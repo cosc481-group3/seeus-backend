@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    build: web
+    env_file: .env
+    ports:
+      - 5000:5000
+    volumes:
+      - ./web:/app
+
+  database:
+    image: "postgres:12.2"
+    env_file: .env
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+
+volumes:
+  database-data:
