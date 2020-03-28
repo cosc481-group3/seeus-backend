@@ -1,1 +1,1 @@
-docker-compose exec web pipenv "$@"
+docker-compose run --rm web pipenv "$@"
