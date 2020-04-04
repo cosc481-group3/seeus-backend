@@ -8,12 +8,20 @@ Built with Python and Flask.
 
 ### Set Up
 
+#### With Docker
 1.  [Install Docker](https://docs.docker.com/install/)
 2.  Clone repo `git clone git@github.com:seeus-dev/seeus-backend.git`
-3.  Run install script `./scripts/install`
-4.  Start up the flask app and postgres DB with `./scripts/start` (This just runs docker-compose)
+3.  Run setup script `./scripts/setup`
+4.  Start up the flask app and postgres DB with `./scripts/start` (runs `docker-compose up -d`)
 
 The server will be running at http://localhost:5000
+
+Now setup your IDE ([instructions]() for IntelliJ/PyCharm) to point to the python interpreter in the docker-compose `web` service container.
+
+#### Without Docker
+1. Clone repo `git clone git@github.com:seeus-dev/seeus-backend.git`
+2. Run setup script `./scripts/setup`
+3. 
 
 ### Dependency Management
 

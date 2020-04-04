@@ -1,12 +1,13 @@
 version: '3'
 services:
   web:
-    build: web
+    build: .
     env_file: .env
+    restart: on-failure
     ports:
       - 5000:5000
     volumes:
-      - ./web:/app
+      - ./:/app
 
   database:
     image: "postgres:12.2"

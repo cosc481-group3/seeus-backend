@@ -1,6 +1,6 @@
-if [ ! -f .env ]; then
-    echo "Copying .env.example to .env"
-    cp .env.example .env
-fi
+# Installs a python dependency
+# This will run in the web container, so developers do not have to have python or pipenv installed locally
+# It will modify Pipfile and Pipfile.lock, so dependency changes can still be tracked in git
+# Note: --system flag is needed so dependencies are installed at system level in the container
 
-echo "Done. Run ./scripts/start to start the backend."
+docker-compose run --rm web pipenv install "$@"
