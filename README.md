@@ -8,7 +8,6 @@ Built with Python and Flask.
 
 ### Set Up
 
-#### With Docker
 1.  [Install Docker](https://docs.docker.com/install/)
 2.  Clone repo `git clone git@github.com:seeus-dev/seeus-backend.git`
 3.  Run setup script `./scripts/setup`
@@ -16,14 +15,12 @@ Built with Python and Flask.
 
 The server will be running at http://localhost:5000
 
-Now setup your IDE ([instructions]() for IntelliJ/PyCharm) to point to the python interpreter in the docker-compose `web` service container:
+Now setup your IDE ([instructions]() for IntelliJ/PyCharm) to point to the python interpreter in the docker-compose `web` service container.
 
-Project Structure > SDKs > `+` > Python SDK > Docker Compose > Select web service 
+In IntelliJ: 
 
-#### Without Docker
-1. Clone repo `git clone git@github.com:seeus-dev/seeus-backend.git`
-2. Run setup script `./scripts/setup`
-3. 
+1. Project Structure > SDKs > `+` > Python SDK > Docker Compose > Select web service
+2. Project Structure > Project > Select SDK created in (1): "Remote Python .. Docker Compose web"
 
 ### Dependency Management
 
