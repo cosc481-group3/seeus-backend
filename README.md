@@ -22,24 +22,14 @@ In IntelliJ:
 1. Project Structure > SDKs > `+` > Python SDK > Docker Compose > Select web service
 2. Project Structure > Project > Select SDK created in (1): "Remote Python .. Docker Compose web"
 
-### Dependency Management
+### Dependencies
 
-We're using Pipenv to manage dependencies. Pipenv manages both the virtualenv and ensures a specific version of python is being used. 
+Install [pipflow](https://github.com/iMerica/pipflow) with `pip3 install pipflow`
 
-Since we're using Docker, you don't have to install Python, pip, or Pipenv. This is all managed automatically through Docker, and everything stays in the Docker web container.
-
-Because of this, to install or update dependencies via pip/pipenv, you have to run `pipenv` command through the web container. We have a helper script to do this:
-
-```bash
-./scripts/pipenv
-```
-
-For example, to install `flask` dependency you would run:
-
-```bash
-./scripts/pipenv install flask
-```
+You can add packages with `pipflow add [package]`. This updates requirements.txt and rebuilds the docker image.
 
 ## PostgreSQL
 
+Run psql within the Postgres container with `./scripts/psql`.
+ 
 [Postgres CLI Commands Cheat Sheet](https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546)
