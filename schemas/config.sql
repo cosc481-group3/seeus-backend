@@ -45,4 +45,4 @@ CREATE TABLE IF NOT EXISTS seeus_config
 (
     name varchar(100),
     value text
-)
+);
