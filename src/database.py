@@ -6,5 +6,5 @@ load_dotenv()
 
 try:
     conn = psycopg2.connect(f"dbname='postgres' user='{os.getenv('POSTGRES_USER')}' host='database' password='{os.getenv('POSTGRES_PASSWORD')}'")
-except:
+except psycopg2.Error:
     print("Unable to connect to the database")
