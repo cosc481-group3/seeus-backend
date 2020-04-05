@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build: .
+    env_file: .env
+    restart: on-failure
+    ports:
+      - 5000:5000
+    volumes:
+      - ./:/app
+
+  database:
+    image: "postgres:12.2"
+    env_file: .env
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+
+volumes:
+  database-data:
