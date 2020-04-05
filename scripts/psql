@@ -1,2 +1,2 @@
 # Runs the psql command on database container
-docker-compose exec database psql -U seeus
+docker-compose exec database psql -U seeus "$@"
