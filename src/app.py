@@ -1,23 +1,10 @@
-from flask import Flask, jsonify, request
-import psycopg2
+from flask import Flask
+from mobile import mobile
+from dispatcher import dispatcher
 
 app = Flask('SEEUS')
-
-
-@app.route('/')
-def hello():
-    return "Hello World!"
-
-
-@app.route('/hello/<name>')
-def test(name):
-    out = {
-        "message": "Hello, " + name,
-        "query_params": request.args,
-        "name": name
-    }
-    return jsonify(out)
-
+app.register_blueprint(mobile)
+app.register_blueprint(dispatcher)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
