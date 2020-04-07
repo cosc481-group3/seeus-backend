@@ -3,16 +3,10 @@ from flask import jsonify, request, Blueprint
 
 mobile = Blueprint('app', __name__, url_prefix='/app')
 
-@mobile.route('/')
-def hello():
-    return "Hello World!"
+@mobile.route('/auth/begin')
+def auth_begin():
+    return "Auth begin"
 
-
-@mobile.route('/requests/scheduled')
-def test(name):
-    out = {
-        "message": "Hello, " + name,
-        "query_params": request.args,
-        "name": name
-    }
-    return jsonify(out)
+@mobile.route('/auth/callback')
+def auth_callback():
+    return "Auth callback"
