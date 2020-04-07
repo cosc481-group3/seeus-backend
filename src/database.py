@@ -1,10 +1,8 @@
 import psycopg2
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
+from config import config
 
 try:
-    conn = psycopg2.connect(f"dbname='{os.getenv('POSTGRES_DB')}' user='{os.getenv('POSTGRES_USER')}' host='{os.getenv('POSTGRES_USER')}' password='{os.getenv('POSTGRES_PASSWORD')}'")
+    conn = psycopg2.connect(f"dbname='{config.database.name}' user='{config.database.user}' "
+                            f"host='{config.database.host}' password='{config.database.password}'")
 except psycopg2.Error:
     print("Unable to connect to the database")
