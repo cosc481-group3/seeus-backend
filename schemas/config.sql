@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS users
 (
-    id             INT PRIMARY KEY,
+    id             SERIAL PRIMARY KEY,
     username       varchar(50),
     google_user_id varchar(100),
     eid            varchar(20) UNIQUE,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS employees
 (
-    id         INT PRIMARY KEY,
+    id         SERIAL PRIMARY KEY,
     username   varchar(50),
     first_name varchar(50),
     last_name  varchar(50),
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS employees
 
 CREATE TABLE IF NOT EXISTS locations
 (
-    id        INT PRIMARY KEY,
+    id        SERIAL PRIMARY KEY,
     name      varchar(50),
     latitude  FLOAT,
     longitude FLOAT
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS locations
 
 CREATE TABLE IF NOT EXISTS requests
 (
-    id              INT PRIMARY KEY,
+    id              SERIAL PRIMARY KEY,
     user_id         INT,
     start_location  INT,
     end_location    INT,
@@ -44,6 +44,6 @@ CREATE TABLE IF NOT EXISTS requests
 
 CREATE TABLE IF NOT EXISTS seeus_config
 (
-    name  varchar(100),
+    name  varchar(100) UNIQUE,
     value text
 );
