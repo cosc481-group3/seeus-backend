@@ -1,6 +1,7 @@
 from flask import Flask
-from mobile import mobile
+
 from dispatcher import dispatcher
+from mobile import mobile
 
 app = Flask('SEEUS')
 app.register_blueprint(mobile)
