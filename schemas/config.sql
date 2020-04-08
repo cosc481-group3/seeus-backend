@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS requests
     end_location    INT,
     start_latitude  FLOAT,
     start_longitude FLOAT,
+    notes           TEXT,
     status_code     int,
     assigned_group  int,
     FOREIGN KEY (user_id) REFERENCES users (id),
