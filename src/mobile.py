@@ -16,7 +16,7 @@ def requests():
                               'end_location': data["end_location"],
                               'start_latitude': data["start_latitude"],
                               'start_longitude': data["start_longitude"],
-                              'notes': data["notes"],
+                              'notes': data["notes"]
                           })
     conn.commit()
     return data
