@@ -1,8 +1,8 @@
 from flask import Flask, jsonify
 
-from dispatcher import dispatcher
-from mobile import mobile
-from database import conn
+from blueprints.dispatcher import dispatcher
+from blueprints.mobile import mobile
+from database import db
 
 app = Flask('SEEUS')
 app.register_blueprint(mobile)
@@ -11,16 +11,14 @@ app.register_blueprint(dispatcher)
 
 @app.route('/locations')
 def locations():
-    cursor = conn.cursor()
-    cursor.execute("select * from locations")
-    return jsonify(cursor.fetchall())
+    result = db.query_all("select * from locations")
+    return jsonify(result)
 
 
 @app.route('/hours')
 def hours():
-    cursor = conn.cursor()
-    cursor.execute("select value from seeus_config where name='hours'")
-    return jsonify(cursor.fetchone()[0])
+    result = db.query_one("select value from seeus_config where name='hours'")
+    return jsonify(result['value'] if result else None)
 
 
 if __name__ == '__main__':
