@@ -5,10 +5,10 @@ from typing import Optional
 @dataclass
 class GoogleUser:
     id: str
+    email: str
     first_name: str
     last_name: str
-    email: Optional[str] = None
-    picture_url: Optional[str] = None
+    picture_url: str
 
 
 @dataclass

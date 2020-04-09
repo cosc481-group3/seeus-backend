@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS users
     first_name     varchar(50),
     last_name      varchar(50),
     phone          varchar(50),
-    is_banned      bool
+    is_banned      bool,
+    picture_url    varchar(500)
 );
 
 CREATE TABLE IF NOT EXISTS employees
