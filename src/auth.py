@@ -27,7 +27,8 @@ if config.is_dev:
 
 
 def begin_oauth(username: str):
-    """ Begin the oauth process.
+    """
+    Begin the oauth process.
     :param username: the username of the user (without @emich.edu)
     :return: authorization_url, state
     """
@@ -44,7 +45,8 @@ def begin_oauth(username: str):
 
 
 def complete_oauth(response_url, state) -> Tuple[User, str]:
-    """ Finish off the oauth process. Create JWT token for user to authenticate with.
+    """
+    Finish off the oauth process. Create JWT token for user to authenticate with.
     :param response_url: full request callback url that google redirected to
     :param state: state generated in begin_oauth call
     :return: User, jwt
@@ -69,7 +71,7 @@ def complete_oauth(response_url, state) -> Tuple[User, str]:
 
 def _fetch_google_user_info(oauth_session) -> GoogleUserInfo:
     """
-    Fetches google's user info
+    Fetches google's user info.
     :param oauth_session: the oauthlib session object
     :return: GoogleUserInfo
     """
