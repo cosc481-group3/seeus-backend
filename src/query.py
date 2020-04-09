@@ -6,8 +6,8 @@ from models import User, GoogleUser
 
 def create_user(user: User) -> User:
     result = db.query_one(
-        'insert into users (google_user_id, first_name, last_name, phone, eid)'
-        'values %(google_id)s, %(fname)s, %(lname)s, %(phone)s, %(eid)s'
+        'insert into users (google_user_id, first_name, last_name, phone, eid) '
+        'values (%(google_id)s, %(fname)s, %(lname)s, %(phone)s, %(eid)s) '
         'returning id',
         {
             'google_id': user.google_user_id,
