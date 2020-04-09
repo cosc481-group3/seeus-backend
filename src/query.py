@@ -49,5 +49,6 @@ def map_user_row(row: dict) -> User:
         first_name=row['first_name'],
         last_name=row['last_name'],
         phone=row['phone'],
-        is_banned=row['is_banned']
+        is_banned=row['is_banned'],
+        picture_url=None
     )
