@@ -17,6 +17,7 @@ def create_user(user: User) -> User:
             'eid': user.eid
         }
     )
+    db.commit()
     user.id = result['id']
     return user
 
