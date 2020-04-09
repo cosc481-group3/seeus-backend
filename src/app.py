@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 
-from dispatcher import dispatcher
-from mobile import mobile
+from blueprints.dispatcher import dispatcher
+from blueprints.mobile import mobile
 from database import conn
 
 app = Flask('SEEUS')
