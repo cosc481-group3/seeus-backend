@@ -3,7 +3,7 @@ from typing import Optional
 
 
 @dataclass
-class GoogleUser:
+class GoogleUserInfo:
     id: str
     email: str
     first_name: str

@@ -1,37 +1,45 @@
-from flask import jsonify, request, Blueprint
-from random import random
+from http import HTTPStatus
 
-from database import conn
+from flask import jsonify, request, Blueprint, session, redirect
 
+from auth import begin_oauth, complete_oauth
 
 mobile = Blueprint('app', __name__, url_prefix='/app')
 
 
-@mobile.route('/auth/begin', methods=['POST'])
-def auth_begin():
-    return "Auth begin"
+@mobile.route('/oauth/start')
+def auth_start():
+    username = request.args.get('username', '').split('@')[0]
 
-@mobile.route('/auth/callback')
+    if not username:
+        return 'Error: username is required', 400
+
+    auth_url, state = begin_oauth(username)
+    session['oauth_state'] = state
+    return redirect(auth_url)
+
+
+@mobile.route('/oauth/callback')
 def auth_callback():
-    return "Auth callback"
+    state = session.get('oauth_state', '')
+    if not state:
+        return 'Invalid request', HTTPStatus.BAD_REQUEST
 
-@mobile.route('/')
-def hello():
-    conn.cursor().execute("insert into seeus_config (name, value) "
-                          "values (%(name)s, %(value)s)", {
-        'name': f'name{round(random()*1000)}',
-        'value': 'some value'
-    })
-    conn.commit()
-    cursor = conn.cursor()
-    cursor.execute("select * from seeus_config")
-    return jsonify(cursor.fetchall())
+    session['oauth_state'] = None
 
-@mobile.route('/requests/scheduled')
-def test(name):
-    out = {
-        "message": "Hello, " + name,
-        "query_params": request.args,
-        "name": name
+    user, jwt = complete_oauth(request.url, state)
+    auth_data = {
+        'user': user,
+        'jwt': jwt
     }
-    return jsonify(out)
+    json = jsonify(auth_data).get_data(as_text=True)
+
+    # This javascript snippet will render in the oauth webview within the app
+    # It sends the auth info to the app via the webview message interface
+    return (
+        f"""
+        <script>
+            window.ReactNativeWebView.postMessage(JSON.stringify({json}))
+        </script>
+        """
+    )
