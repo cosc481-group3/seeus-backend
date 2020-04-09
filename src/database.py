@@ -12,13 +12,13 @@ class Database:
         cursor.execute(sql, *args, **kwargs)
         return cursor
 
-    def query_fetch_all(self, sql, *args, **kwargs):
+    def query_all(self, sql, *args, **kwargs):
         cursor = self.query(sql, *args, **kwargs)
         result = cursor.fetchall()
         cursor.close()
         return result
 
-    def query_fetch_one(self, sql, *args, **kwargs):
+    def query_one(self, sql, *args, **kwargs):
         cursor = self.query(sql, *args, **kwargs)
         result = cursor.fetchone()
         cursor.close()
