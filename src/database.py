@@ -11,7 +11,7 @@ QueryParams = Union[Sequence, Dict]
 class Database:
     def __init__(self, connection):
         """
-        Creates a database instance
+        Creates a database instance.
         :param connection: The psycopg2 connection object
         """
         self._connection = connection
