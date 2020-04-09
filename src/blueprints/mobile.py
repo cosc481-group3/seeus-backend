@@ -3,6 +3,7 @@ from http import HTTPStatus
 from flask import jsonify, request, Blueprint, session, redirect
 
 from auth import begin_oauth, complete_oauth
+from database import db
 
 mobile = Blueprint('app', __name__, url_prefix='/app')
 
@@ -43,3 +44,20 @@ def auth_callback():
         </script>
         """
     )
+
+
+@mobile.route('/requests', methods=['POST'])
+def requests():
+    data = request.get_json(force=True)
+    db.query_commit("insert into requests (user_id, start_location, end_location, start_latitude, "
+                    "start_longitude, notes) "
+                    "values (%(user_id)s, %(start_location)s, %(end_location)s, %(start_latitude)s, "
+                    "%(start_longitude)s, %(notes)s)", {
+                        'user_id': 1,
+                        'start_location': data["start_location"],
+                        'end_location': data["end_location"],
+                        'start_latitude': data["start_latitude"],
+                        'start_longitude': data["start_longitude"],
+                        'notes': data["notes"]
+                    })
+    return data
