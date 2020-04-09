@@ -3,20 +3,22 @@ from models import User, GoogleUserInfo
 
 
 def create_user(user: User) -> User:
-    result = db.query_one(
-        'insert into users (google_user_id, username, first_name, last_name, phone, eid, picture_url)'
-        ' values (%(google_id)s, %(username)s, %(fname)s, %(lname)s, %(phone)s, %(eid)s, %(pic_url)s)'
-        ' returning id',
-        {
-            'google_id': user.google_user_id,
-            'username': user.username,
-            'fname': user.first_name,
-            'lname': user.last_name,
-            'phone': user.phone,
-            'eid': user.eid,
-            'pic_url': user.picture_url
-        }
-    )
+    result = db.query_one("""
+        insert into users (
+            google_user_id, username, first_name, last_name, phone, eid, picture_url
+        ) values (
+            %(google_id)s, %(username)s, %(fname)s, %(lname)s, %(phone)s, %(eid)s, %(pic_url)s
+        ) 
+        returning id
+        """, {
+        'google_id': user.google_user_id,
+        'username': user.username,
+        'fname': user.first_name,
+        'lname': user.last_name,
+        'phone': user.phone,
+        'eid': user.eid,
+        'pic_url': user.picture_url
+    })
     db.commit()
     user.id = result['id']
     return user
