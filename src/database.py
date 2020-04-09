@@ -1,26 +1,34 @@
+from typing import Union, Tuple, Sequence, Dict, Optional
+
 import psycopg2
 import psycopg2.extras
 
 from config import config
+
+QueryParams = Union[Sequence, Dict]
 
 
 class Database:
     def __init__(self, connection):
         self._connection = connection
 
-    def query(self, sql, *args, **kwargs):
+    def query(self, sql, params: Optional[QueryParams] = None):
         cursor = self._create_dict_cursor()
-        cursor.execute(sql, *args, **kwargs)
+        cursor.execute(sql, params)
         return cursor
 
-    def query_all(self, sql, *args, **kwargs):
-        cursor = self.query(sql, *args, **kwargs)
+    def query_commit(self, sql, params: Optional[QueryParams] = None):
+        self.query(sql, params)
+        self.commit()
+
+    def query_all(self, sql, params: Optional[QueryParams] = None):
+        cursor = self.query(sql, params)
         result = cursor.fetchall()
         cursor.close()
         return result
 
-    def query_one(self, sql, *args, **kwargs):
-        cursor = self.query(sql, *args, **kwargs)
+    def query_one(self, sql, params: Optional[QueryParams] = None):
+        cursor = self.query(sql, params)
         result = cursor.fetchone()
         cursor.close()
         return result
