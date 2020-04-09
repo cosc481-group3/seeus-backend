@@ -18,7 +18,8 @@ class Config:
 
     host = getenv('APP_HOST')
     secret_key = getenv('SECRET_KEY')
-    mode = getenv('FLASK_ENV')
+    flask_env = getenv('FLASK_ENV')
+    is_dev = flask_env == 'development'
 
     database = DatabaseConfig()
     oauth = OauthConfig()
