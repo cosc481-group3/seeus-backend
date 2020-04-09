@@ -16,6 +16,7 @@ class Config:
         client_id = getenv('OAUTH_CLIENT_ID')
         client_secret = getenv('OAUTH_CLIENT_SECRET')
 
+    secret_key = getenv('SECRET_KEY')
     mode = getenv('FLASK_ENV')
 
     database = DatabaseConfig()
