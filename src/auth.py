@@ -32,11 +32,11 @@ def begin_oauth(username: str):
     :return: authorization_url, state
     """
     oauth_session = _construct_oauth_session()
+    login_hint = f'{username}@emich.edu'
     authorization_url, state = oauth_session.authorization_url(
         google_auth_base_url,
         access_type='offline',
-        prompt='consent',
-        login_hint=f'{username}@emich.edu',
+        login_hint=login_hint,
         hd='emich.edu'
     )
 
@@ -89,6 +89,5 @@ def _fetch_google_user_info(oauth_session) -> GoogleUserInfo:
     )
 
 
-def _construct_oauth_session(state=None):
-    return OAuth2Session(client_id, scope=oauth_scope,
-                         redirect_uri=callback_uri, state=state)
+def _construct_oauth_session(**kwargs):
+    return OAuth2Session(client_id, scope=oauth_scope, redirect_uri=callback_uri, **kwargs)
