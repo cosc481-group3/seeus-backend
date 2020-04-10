@@ -29,11 +29,12 @@ def auth_callback():
     session['oauth_state'] = None
 
     user, jwt = complete_oauth(request.url, state)
-    auth_data = {
+    output = {
+        'action': 'loginSuccess',
         'user': user,
         'jwt': jwt
     }
-    json = jsonify(auth_data).get_data(as_text=True)
+    json = jsonify(output).get_data(as_text=True)
 
     # This javascript snippet will render in the oauth webview within the app
     # It sends the auth info to the app via the webview message interface
