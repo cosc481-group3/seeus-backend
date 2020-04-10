@@ -2,8 +2,8 @@ from http import HTTPStatus
 
 from flask import jsonify, request, Blueprint, session, redirect
 
-from auth import begin_oauth, complete_oauth
-from database import db
+from ..auth import begin_oauth, complete_oauth
+from ..database import db
 
 mobile = Blueprint('app', __name__, url_prefix='/app')
 

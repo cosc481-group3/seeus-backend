@@ -3,7 +3,7 @@ from typing import Union, Sequence, Dict, Optional
 import psycopg2
 import psycopg2.extras
 
-from config import config
+from .config import config
 
 QueryParams = Union[Sequence, Dict]
 
