@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS employees
 CREATE TABLE IF NOT EXISTS locations
 (
     id        SERIAL PRIMARY KEY,
+    emu_id    int unique,
     name      varchar(100),
     type      varchar(10),
     address   varchar(50),
