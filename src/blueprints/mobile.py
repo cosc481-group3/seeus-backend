@@ -29,22 +29,27 @@ def auth_callback():
     session['oauth_state'] = None
 
     user, jwt = complete_oauth(request.url, state)
-    output = {
+    msg = json_as_text({
         'action': 'loginSuccess',
         'user': user,
         'jwt': jwt
-    }
-    json = jsonify(output).get_data(as_text=True)
+    })
+    loading_msg = json_as_text({'action': 'loading'})
 
     # This javascript snippet will render in the oauth webview within the app
     # It sends the auth info to the app via the webview message interface
     return (
         f"""
         <script>
-            window.ReactNativeWebView.postMessage(JSON.stringify({json}))
+            window.ReactNativeWebView.postMessage(JSON.stringify({loading_msg}));
+            window.ReactNativeWebView.postMessage(JSON.stringify({msg}));
         </script>
         """
     )
+
+
+def json_as_text(data: dict) -> str:
+    return jsonify(data).get_data(as_text=True)
 
 
 @mobile.route('/requests', methods=['POST'])
