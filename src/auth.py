@@ -13,7 +13,7 @@ google_token_url = 'https://www.googleapis.com/oauth2/v4/token'
 google_user_info_url = 'https://www.googleapis.com/oauth2/v1/userinfo'
 
 oauth_scope = ['openid', 'email', 'profile']
-callback_uri = f'https://{config.host}/app/oauth/callback'
+callback_uri = f'{config.base_url}/app/oauth/callback'
 client_id = config.oauth.client_id + '.apps.googleusercontent.com'
 client_secret = config.oauth.client_secret
 
