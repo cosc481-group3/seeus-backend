@@ -1,9 +1,9 @@
 from flask import Flask, jsonify
 
-from blueprints.dispatcher import dispatcher
-from blueprints.mobile import mobile
-from config import config
-from database import db
+from .blueprints.dispatcher import dispatcher
+from .blueprints.mobile import mobile
+from .config import config
+from .database import db
 
 app = Flask('SEEUS')
 app.secret_key = config.secret_key

@@ -3,7 +3,7 @@ from typing import Union, Sequence, Dict, Optional
 import psycopg2
 import psycopg2.extras
 
-from config import config
+from .config import config
 
 QueryParams = Union[Sequence, Dict]
 
@@ -17,7 +17,7 @@ class Database:
         self._connection = connection
 
     def query(self, sql, params: Optional[QueryParams] = None):
-        cursor = self._create_dict_cursor()
+        cursor = self.cursor()
         cursor.execute(sql, params)
         return cursor
 
@@ -40,9 +40,9 @@ class Database:
     def commit(self):
         self._connection.commit()
 
-    def _create_dict_cursor(self):
+    def cursor(self, cursor_factory=psycopg2.extras.RealDictCursor, **kwargs):
         # create a dict cursor so we can reference columns by name
-        return self._connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+        return self._connection.cursor(cursor_factory=cursor_factory, **kwargs)
 
 
 try:

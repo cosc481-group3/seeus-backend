@@ -1,3 +1,9 @@
+-- drop table requests;
+-- drop table locations;
+-- drop table users;
+-- drop table employees;
+-- drop table seeus_config;
+
 CREATE TABLE IF NOT EXISTS users
 (
     id             SERIAL PRIMARY KEY,
@@ -23,7 +29,10 @@ CREATE TABLE IF NOT EXISTS employees
 CREATE TABLE IF NOT EXISTS locations
 (
     id        SERIAL PRIMARY KEY,
-    name      varchar(50),
+    emu_id    int unique,
+    name      varchar(100),
+    type      varchar(10),
+    address   varchar(50),
     latitude  FLOAT,
     longitude FLOAT
 );

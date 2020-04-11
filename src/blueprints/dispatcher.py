@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from database import db
+from ..database import db
 
 dispatcher = Blueprint('dispatcher', __name__, url_prefix='/dispatcher')
 

@@ -4,9 +4,9 @@ from typing import Tuple
 
 from requests_oauthlib import OAuth2Session
 
-from config import config
-from models import User, GoogleUserInfo
-from query import find_or_create_user
+from .config import config
+from .models import User, GoogleUserInfo
+from .query import find_or_create_user
 
 google_auth_base_url = 'https://accounts.google.com/o/oauth2/v2/auth'
 google_token_url = 'https://www.googleapis.com/oauth2/v4/token'

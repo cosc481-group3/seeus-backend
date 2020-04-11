@@ -1,5 +1,5 @@
-from database import db
-from models import User, GoogleUserInfo
+from .database import db
+from .models import User, GoogleUserInfo
 
 
 def create_user(user: User) -> User:
