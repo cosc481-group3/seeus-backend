@@ -16,7 +16,7 @@ class Config:
         client_id = getenv('OAUTH_CLIENT_ID')
         client_secret = getenv('OAUTH_CLIENT_SECRET')
 
-    host = getenv('APP_HOST')
+    base_url = getenv('API_BASE_URL')
     secret_key = getenv('SECRET_KEY')
     flask_env = getenv('FLASK_ENV')
     is_dev = flask_env == 'development'
