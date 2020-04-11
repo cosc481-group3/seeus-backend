@@ -1,5 +1,7 @@
 # SEEUS App Backend
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ec0375095ced4b55b5c14921e2e565bc)](https://app.codacy.com/gh/seeus-dev/seeus-backend?utm_source=github.com&utm_medium=referral&utm_content=seeus-dev/seeus-backend&utm_campaign=Badge_Grade_Dashboard)
+
 Backend for SEEUS Mobile App and Dispatcher Web App.
 
 Built with Python and Flask.
