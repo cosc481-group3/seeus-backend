@@ -22,11 +22,18 @@ In IntelliJ:
 1. Project Structure > SDKs > `+` > Python SDK > Docker Compose > Select web service
 2. Project Structure > Project > Select SDK created in (1): "Remote Python .. Docker Compose web"
 
-### Dependencies
+### OAuth
+OAuth requires the environmental variables OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET to be set in .env file.
 
-Install [pipflow](https://github.com/iMerica/pipflow) with `pip3 install pipflow`
+-  SEEUS dev team: get the credentials from Nathan, the project documentation, or from the Google Developer Console.
 
-You can add packages with `pipflow add [package]`. This updates requirements.txt and rebuilds the docker image.
+-  External/open source contributors: you'll need to [create oauth credentials under your own Google project](https://support.google.com/googleapi/answer/6158862?hl=en) to obtain a client ID and secret.
+
+### Dependency Management
+
+Install [pipflow](https://github.com/iMerica/pipflow) with `pip3 install pipflow` locally on your machine. This automatically updates requirements.txt and rebuilds the docker image in one command.
+
+You can add packages with `pipflow add [package]`. See docs for more commands.
 
 ## PostgreSQL
 
