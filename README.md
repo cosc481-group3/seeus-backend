@@ -6,7 +6,7 @@ Built with Python and Flask.
 
 ## Development
 
-### Set Up
+### Installation
 
 1.  [Install Docker](https://docs.docker.com/install/)
 2.  Clone repo `git clone git@github.com:seeus-dev/seeus-backend.git`
@@ -22,20 +22,25 @@ In IntelliJ:
 1. Project Structure > SDKs > `+` > Python SDK > Docker Compose > Select web service
 2. Project Structure > Project > Select SDK created in (1): "Remote Python .. Docker Compose web"
 
-### OAuth
-OAuth requires the environmental variables OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET to be set in .env file.
-
--  SEEUS dev team: get the credentials from Nathan, the project documentation, or from the Google Developer Console.
-
--  External/open source contributors: you'll need to [create oauth credentials under your own Google project](https://support.google.com/googleapi/answer/6158862?hl=en) to obtain a client ID and secret.
-
 ### Dependency Management
 
 Install [pipflow](https://github.com/iMerica/pipflow) with `pip3 install pipflow` locally on your machine. This automatically updates requirements.txt and rebuilds the docker image in one command.
 
 You can add packages with `pipflow add [package]`. See docs for more commands.
 
-## PostgreSQL
+### Local OAuth Set Up
+OAuth requires the environmental variables OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET to be set in .env file.
+
+-  SEEUS dev team: get the credentials from project documentation or directly from the Google API Console.
+
+-  External/open source contributors: [create oauth credentials under your own project in Google API Console](https://support.google.com/googleapi/answer/6158862?hl=en) to obtain a client ID and secret.
+
+To access a local instance of the backend running on your computer from a physical phone:
+1. Sign up for and install [ngrok](https://ngrok.com/). Start a tunnel.
+2. Set API_BASE_URL to your ngrok tunnel's subdomain (`[yourcode].ngrok.io`) in the .env file in both backend and app.
+3. Add the callback URL with your ngrok tunnel (`https://[yourcode].ngrok.io/app/auth/callback`) in [Google API Console](https://console.developers.google.com/apis/credentials) (Project: seeus-appliction) > Credentials > SEEUS Backend > Authorized redirect URIs
+
+### PostgreSQL
 
 Run psql within the Postgres container with `./scripts/psql`.
  
